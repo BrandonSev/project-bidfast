@@ -7,4 +7,4 @@
 - `pnpm i`, pour installer les différents packages
 - `pnpm start`, pour lancer le serveur
 
-# Projet développé par [Brandon Seveste](brandon-seveste.fr)
+# Projet développé par [Brandon Seveste](http://brandon-seveste.fr)
