@@ -1,0 +1,41 @@
+.hero {
+  @extend .container;
+  display: flex;
+  align-items: center;
+  margin-top: space(6);
+  padding: 0;
+}
+
+.hero__left {
+  h1 {
+    margin-bottom: space(3);
+    font-size: 64px;
+    letter-spacing: -1px;
+    line-height: 0.85em;
+  }
+  .hero__left_desc {
+    margin-bottom: space(3);
+    font-weight: 300;
+  }
+  .hero__left_show {
+    display: block;
+    margin-bottom: space(3);
+  }
+}
+
+.hero__right {
+  display: none;
+}
+
+@media screen and (min-width: 992px) {
+  .hero__left {
+    max-width: 430px;
+  }
+  .hero__right {
+    display: flex;
+    justify-content: center;
+    margin-left: 100px;
+    width: 100%;
+    max-width: 796px;
+  }
+}
