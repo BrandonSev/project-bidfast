@@ -48,10 +48,6 @@
   top: 50%;
   transform: translate(-50%, -50%);
   font-size: space(2.5);
-
-  & > *:hover{
-    @extend .active !optional;
-  }
 }
 
 .navbar.is-open {
