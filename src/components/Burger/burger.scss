@@ -8,6 +8,23 @@
   backdrop-filter: blur(15px);
   transition: transform .4s ease-in-out;
   transform: translateX(100%);
+
+  .navbar__right {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    top: 1rem;
+    left: 1rem;
+
+    .icon {
+      display: none;
+    }
+
+    & > *:not(:last-child) {
+      margin-right: space(1);
+    }
+
+  }
 }
 
 .burger__menu {
@@ -53,23 +70,6 @@
 .navbar.is-open {
   .burger__content.open {
     transform: translateX(0);
-
-    .navbar__right {
-      position: absolute;
-      display: flex;
-      align-items: center;
-      top: 1rem;
-      left: 1rem;
-
-      .icon {
-        display: none;
-      }
-
-      & > *:not(:last-child) {
-        margin-right: space(1);
-      }
-
-    }
   }
 
   .burger__menu {
@@ -89,10 +89,10 @@
       transform: rotate(-45deg);
     }
   }
+}
 
-  @media screen and (min-width: 810px) {
-    .burger__content {
-      display: none;
-    }
+@media screen and (min-width: 810px) {
+  .burger__content {
+    display: none;
   }
 }
