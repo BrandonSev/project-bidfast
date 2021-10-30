@@ -1,0 +1,42 @@
+.steps {
+  margin-top: space(8);
+
+  h2 {
+    margin-bottom: space(8);
+  }
+
+  .steps__body {
+    div {
+      text-align: center;
+      margin-bottom: space(8);
+
+      img {
+        margin-bottom: space(3);
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .steps{
+    text-align: initial;
+  }
+  .steps__body {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: space(8) 0;
+    align-items: center;
+    justify-content: center;
+
+    div {
+      margin-bottom: 0 !important;
+    }
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .steps__body {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+}

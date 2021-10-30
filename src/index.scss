@@ -25,6 +25,10 @@ h1 {
   font-size: 42px;
   line-height: 1.2;
 }
+h2{
+  font-size: 32px;
+  line-height: 1.2;
+}
 input,
 select {
   display: block;
@@ -98,3 +102,4 @@ button:hover {
 @import "./components/Header/MenuAction/menu-action";
 @import "./components/Burger/burger";
 @import "./components/Hero/hero";
+@import "./components/HowItWorks/index";
