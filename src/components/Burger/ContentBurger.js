@@ -5,7 +5,7 @@ import MenuAction from "../Header/MenuAction";
 const ContentBurger = ({open}) => {
   return (
     <div className={`burger__content ${open ? "open" : ""}`}>
-      <MenuAction />
+      <MenuAction className={"header__right"}/>
       <MenuList className="burger__list"/>
     </div>
   );

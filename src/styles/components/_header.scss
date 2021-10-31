@@ -1,11 +1,11 @@
-.navbar {
+.header {
   @extend .container !optional;
   display: flex;
   align-items: center;
   margin-top: space(2);
 }
 
-.navbar__menu {
+.header__menu {
   display: none;
 }
 
@@ -31,14 +31,26 @@
   }
 }
 
+.header__right {
+  display: none;
+
+  .logout{
+    display: flex;
+    align-items: center;
+    & svg{
+      margin-left: space(1);
+    }
+  }
+}
+
 @media screen and (min-width: 810px) {
-  .navbar {
+  .header {
     justify-content: space-between;
   }
   .burger__menu {
     display: none !important;
   }
-  .navbar__menu {
+  .header__menu {
     display: flex;
     align-items: center;
 
@@ -49,5 +61,22 @@
       padding-right: 0;
     }
   }
+  .header__right {
+    display: flex;
+    align-items: center;
+    top: 1rem;
+    left: 1rem;
 
+    & > *:not(:last-child) {
+      margin-right: space(1);
+    }
+
+    .icon {
+      margin-right: space(2);
+    }
+
+    a:not(:last-child) {
+      margin-right: calc(2 * var(--space));
+    }
+  }
 }

@@ -98,8 +98,10 @@ button:hover {
   font-size: 0.9rem;
 }
 
-@import "./components/Header/header";
-@import "./components/Header/MenuAction/menu-action";
-@import "./components/Burger/burger";
+@import "./styles/_home";
+@import "./styles/components/_header";
+@import "./styles/components/_burger";
+@import "./styles/components/_card";
 @import "./components/Hero/hero";
 @import "./components/HowItWorks/index";
+@import "./components/Carousel/carousel";
