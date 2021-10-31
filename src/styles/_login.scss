@@ -1,0 +1,62 @@
+.login {
+  @extend .container;
+  margin-top: space(4);
+
+  .login__svg {
+    display: none;
+  }
+
+  & :nth-child(2) {
+    width: 100%;
+  }
+
+  .login__title {
+    display: flex;
+    align-items: center;
+    span {
+      padding-right: space(2);
+    }
+  }
+
+  .login__form {
+    margin-top: space(2);
+    label {
+      display: block;
+      margin-bottom: space(1);
+    }
+    input {
+      display: block;
+      width: 100%;
+      padding: space(2);
+      font-size: 1.1rem;
+      &:focus {
+        outline: none;
+      }
+    }
+    .login__form_group {
+      margin-bottom: space(3);
+    }
+    .login__form_button {
+      display: flex;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      margin-top: space(4);
+
+      & > *:not(:last-child) {
+        margin-right: space(2);
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .login {
+    display: flex;
+    align-items: center;
+    .login__svg {
+      display: block;
+      width: 100%;
+      max-width: 620px;
+    }
+  }
+}
