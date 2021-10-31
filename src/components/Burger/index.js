@@ -1,5 +1,4 @@
 import React from 'react';
-import './burger.scss'
 
 const Burger = (props) => {
   return (

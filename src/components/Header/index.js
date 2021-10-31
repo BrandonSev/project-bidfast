@@ -4,7 +4,6 @@ import MenuList from "./MenuList/";
 import Burger from "../Burger";
 import ContentBurger from "../Burger/ContentBurger";
 import MenuAction from "./MenuAction";
-import './header.scss'
 
 const Header = () => {
   const [open, setOpen] = useState(false);
@@ -13,14 +12,14 @@ const Header = () => {
     setOpen(!open)
   }
   return (
-    <nav className={`navbar ${open ? "is-open" : ""}`}>
-      <NavLink to='/' exact className='navbar__logo' activeClassName=''>
+    <nav className={`header ${open ? "is-open" : ""}`}>
+      <NavLink to='/' exact className='header__logo' activeClassName=''>
         <img src="/image/Logo.png" alt="Logo"/>
       </NavLink>
       <ContentBurger open={open} />
       <MenuList className="nav__mobile"/>
-      <MenuList className="navbar__menu"/>
-      <MenuAction />
+      <MenuList className="header__menu"/>
+      <MenuAction className="header__right" />
       <Burger onClick={handleBurgerClick}/>
     </nav>
   );
