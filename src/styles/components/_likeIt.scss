@@ -1,0 +1,39 @@
+.likeIt {
+  @extend .container;
+  margin-top: space(8);
+}
+.likeIt__title {
+  display: flex;
+  align-items: center;
+
+  span {
+    padding-right: space(2);
+    img{
+      width: 65px;
+    }
+  }
+}
+
+.likeIt__body {
+  margin-top: space(8);
+
+  & > * {
+    margin-bottom: space(2);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .likeIt__body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 space(2);
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .likeIt__body {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0 space(2);
+  }
+}

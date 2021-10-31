@@ -7,7 +7,7 @@
   background: #ffffff;
   backdrop-filter: blur(15px);
   transition: transform .4s ease-in-out;
-  transform: translateX(100%);
+  transform: translateX(-100%);
 
   .header__right {
     position: absolute;
