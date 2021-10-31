@@ -1,0 +1,38 @@
+.footer {
+  @extend .container;
+  padding: space(2);
+  .footer__border {
+    display: block;
+    border-top: 2px solid var(--primary);
+    margin-bottom: space(2);
+  }
+  .footer__body {
+    padding: space(2) 0;
+  }
+  .footer__menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    & > li {
+      padding-right: space(2);
+    }
+  }
+  .footer__copyright {
+    margin-top: space(2);
+    text-align: center;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .footer {
+    .footer__body {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer__copyright {
+      margin-top: 0;
+    }
+  }
+}
