@@ -99,13 +99,14 @@ button:hover {
 }
 
 @import "./styles/_home";
+@import "./styles/_login";
+@import "./styles/_register";
 @import "./styles/components/_header";
 @import "./styles/components/_burger";
 @import "./styles/components/_card";
 @import "./styles/components/_footer";
 @import "./styles/components/_likeIt";
 @import "./styles/components/_likeItCard";
-@import "./styles/_login";
 @import "./components/Hero/hero";
 @import "./components/HowItWorks/index";
 @import "./components/Carousel/carousel";

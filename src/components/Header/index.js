@@ -23,7 +23,7 @@ const Header = () => {
       <ContentBurger open={open} handleClose={handleClose}/>
       <MenuList className="nav__mobile" activeClassName={''}/>
       <MenuList className="header__menu"/>
-      <MenuAction className="header__right"/>
+      <MenuAction className="header__right" activeClassName={''}/>
       <Burger onClick={handleBurgerClick}/>
     </nav>
   );

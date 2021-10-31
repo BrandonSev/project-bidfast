@@ -1,6 +1,7 @@
 .footer {
   @extend .container;
   padding: space(2);
+  margin-top: space(4);
   .footer__border {
     display: block;
     border-top: 2px solid var(--primary);
