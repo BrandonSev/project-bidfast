@@ -8,6 +8,8 @@ router.get('/', userController.findAllUsers)
 router.get('/:id', userController.findOne)
 // POST
 router.post("/register", onlyVisitor, authController.signUp);
+router.post("/login", onlyVisitor ,authController.signIn);
+
 // DELETE
 router.delete('/:id', isAuthenticated, onlyOwnerOrAdmin, userController.removeUser);
 

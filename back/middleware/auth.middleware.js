@@ -14,13 +14,11 @@ module.exports.checkUser = (req, res, next) => {
     jwt.verify(token, process.env.TOKEN_SECRET, async (err, decodedToken) => {
       if (err) {
         res.locals.user = null;
-        req.user = null
         next();
       } else {
         db.query('SELECT * FROM users WHERE id=?', [decodedToken.id], function (err, result) {
           if (err) return res.status(400).send()
-          res.locals.user = result;
-          req.user = result
+          res.locals.user = result[0];
           next();
         })
       }
@@ -58,7 +56,7 @@ module.exports.isAuthenticated = async (req, res, next) => {
  * @returns {Promise<*>}
  */
 module.exports.isAdmin = async (req, res, next) => {
-  if (res.locals.user[0].roles !== 'ADMIN') return res.status(401).json({messsage: 'Vous n\'avez pas les droits requis'})
+  if (res.locals.user.roles !== 'ADMIN') return res.status(401).json({messsage: 'Vous n\'avez pas les droits requis'})
   next()
 }
 /**
@@ -70,7 +68,8 @@ module.exports.isAdmin = async (req, res, next) => {
  * @returns {Promise<*>}
  */
 module.exports.onlyOwnerOrAdmin = async (req, res, next) => {
-  if (parseInt(req.params.id) === res.locals.user[0].id || res.locals.user[0].roles === 'ADMIN') {
+  console.log(res.locals.user)
+  if (parseInt(req.params.id) === res.locals.user.id || res.locals.user.roles === 'ADMIN') {
     next()
   } else {
     return res.status(401).json({message: "Vous n'avez pas les droits requis"})

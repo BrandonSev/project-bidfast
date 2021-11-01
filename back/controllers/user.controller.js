@@ -18,7 +18,7 @@ module.exports.removeUser = (req, res) => {
   db.query('DELETE FROM users WHERE users.id = ?', [req.params.id], function (err, result) {
     if (err) return res.status(400).send()
     if (result.affectedRows === 0) return res.status(404).send()
-    if (parseInt(req.params.id) === res.locals.user[0].id) res.cookie('jwt', '', {maxAge: 1})
-    res.status(200).json({message: "Le compte a bien été supprimé"})
+    if (parseInt(req.params.id) === res.locals.user.id) res.cookie('jwt', '', {maxAge: 1})
+    return res.status(200).json({message: "Le compte a bien été supprimé"})
   })
 }
