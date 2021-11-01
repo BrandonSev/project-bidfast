@@ -4,17 +4,25 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const app = express();
 const db = require("./database");
+const UserRoutes = require("./routes/user.routes");
 
 // Middleware
 const corsOptions = {
   origin: "http://localhost:3000",
   credentials: true
 }
-app.use(() => cors(corsOptions));
+app.use(cors(corsOptions));
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
+
+
+// Routes
+
+app.use("/api/users", UserRoutes);
+
+
 
 // Ecoute du serveur sur le port 3001 + Connexion a la base de donnée
 app.listen("3001", () => {
