@@ -1,19 +1,19 @@
 const db = require('../database')
 
-module.exports.getAll = async (req, res) => {
+module.exports.getAll = (req, res) => {
   db.query('SELECT * FROM offers', function (err, result) {
     if (err) return res.status(400).send(err)
     return res.status(200).send(result)
   })
 }
-module.exports.findOne = async (req, res) => {
+module.exports.findOne = (req, res) => {
   db.query('SELECT * FROM offers WHERE id=?', [req.params.id], function (err, result) {
     if (err) return res.status(400).send(err)
     if(!result.length) return res.status(404).send()
     return res.status(200).send(result)
   })
 }
-module.exports.offerCreate = async (req, res) => {
+module.exports.offerCreate = (req, res) => {
   const {name, content, image, expireAt, startPrice} = req.body
   const userId = res.locals.user.id
   db.query('INSERT INTO offers SET name=?, content=?, image=?, expireAt=?, startPrice=?, userId=?, createdAt=?, updatedAt=?',

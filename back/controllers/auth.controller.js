@@ -10,7 +10,6 @@ const createToken = (id) => {
   });
 };
 
-
 // Fonction qui permet de créer un compte
 module.exports.signUp = async (req, res) => {
   const saltRounds = 10;
@@ -31,8 +30,8 @@ module.exports.signIn = async (req, res) => {
   if (!email || !password) return res.status(400).send()
   db.query('SELECT * FROM users WHERE users.email = ?', [email], async function (err, result, fields) {
       if (err) return res.status(400).send(err)
-      if (!result.length) return res.status(404).json({ message: "Cet email est introuvable"})
-      const comparison = bcrypt.compare(password, result[0].password);
+      if (!result.length) return res.status(404).json({message: "Cet email est introuvable"})
+      const comparison = await bcrypt.compare(password, result[0].password);
       if (comparison) {
         const token = createToken(result[0].id);
         res.cookie("jwt", token, {httpOnly: true, maxAge});
