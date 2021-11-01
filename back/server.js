@@ -5,6 +5,7 @@ const cors = require("cors");
 const app = express();
 const db = require("./database");
 const UserRoutes = require("./routes/user.routes");
+const OfferRoutes = require("./routes/offer.routes");
 const {checkUser} = require("./middleware/auth.middleware");
 
 // Middleware
@@ -21,6 +22,7 @@ app.use('*', checkUser)
 
 // Routes
 app.use("/api/users", UserRoutes);
+app.use("/api/offers", OfferRoutes);
 
 // Ecoute du serveur sur le port 3001 + Connexion a la base de donnée
 app.listen("3001", () => {
