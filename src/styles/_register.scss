@@ -47,17 +47,16 @@
   display: none;
 }
 
-@media screen and (min-width: 1070px) {
+  @media screen and (min-width: 1070px) {
   .register {
     display: flex;
     align-items: center;
     margin-top: space(8);
 
     .register__svg {
-      display: block;
+      display: flex;
       width: 100%;
       max-width: 620px;
-      min-width: 620px;
     }
   }
 }
