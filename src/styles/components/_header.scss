@@ -1,8 +1,16 @@
+nav {
+  position: sticky;
+  top: 0;
+  right: 0;
+  left: 0;
+  padding: space(2) 0;
+  background-color: white;
+  z-index: 2;
+}
+
 .header {
-  @extend .container !optional;
   display: flex;
   align-items: center;
-  margin-top: space(2);
 }
 
 .header__menu {
@@ -34,10 +42,11 @@
 .header__right {
   display: none;
 
-  .logout{
+  .logout {
     display: flex;
     align-items: center;
-    & svg{
+
+    & svg {
       margin-left: space(1);
     }
   }
@@ -57,6 +66,7 @@
     & > * {
       padding-right: space(3);
     }
+
     & > *:last-child {
       padding-right: 0;
     }

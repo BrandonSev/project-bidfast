@@ -1,6 +1,6 @@
 .register {
   @extend .container;
-  margin-top: space(8);
+  margin-top: space(4);
 
   .register__title {
     span {
@@ -8,44 +8,67 @@
     }
   }
 }
+
 .register__form {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-gap: space(4);
+  grid-gap: space(2);
   margin-top: space(2);
+
   input,
   select {
     width: 100%;
     display: inline;
   }
+
   label {
     display: inline-block;
     margin-bottom: space(1);
   }
-  :nth-child(1) {
+
+  :nth-child(1),
+  :nth-child(4),
+  :nth-child(5){
     grid-column: 1 / span 2;
   }
 }
+
 .register__form_button {
   display: flex;
   justify-content: flex-end;
   grid-column: 1 / span 2;
+
   & > *:not(:last-child) {
     margin-right: space(2);
   }
 }
+
 .register__svg {
   display: none;
 }
-@media screen and (min-width: 992px) {
+
+@media screen and (min-width: 1070px) {
   .register {
     display: flex;
     align-items: center;
+    margin-top: space(8);
+
     .register__svg {
       display: block;
       width: 100%;
       max-width: 620px;
       min-width: 620px;
+    }
+  }
+}
+
+@media screen and (min-width: 768px){
+  .register__form{
+    :nth-child(4){
+      grid-column: 1;
+    }
+    :nth-child(5){
+      grid-column: 2;
     }
   }
 }

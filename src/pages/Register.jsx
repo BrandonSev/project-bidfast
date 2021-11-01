@@ -196,7 +196,7 @@ function Register() {
                   className={errors.genre ? "input-error" : ""}
                 >
                   <option value="" disabled selected>
-                    Choisissez parmis la liste
+                    - Choisir -
                   </option>
 
                   <option value="male">Homme</option>
