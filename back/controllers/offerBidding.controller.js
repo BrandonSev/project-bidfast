@@ -16,3 +16,10 @@ module.exports.create = (req, res) => {
     })
   })
 }
+module.exports.findOne = (req, res) => {
+  db.query('SELECT * FROM offer_bidding WHERE id=?', [req.params.id], function (err, result) {
+    if (err) return res.status(400).send(err)
+    if (!result.length) return res.status(404).send()
+    return res.status(200).send(result)
+  })
+}
