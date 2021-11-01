@@ -22,3 +22,12 @@ module.exports.removeUser = (req, res) => {
     return res.status(200).json({message: "Le compte a bien été supprimé"})
   })
 }
+module.exports.update = (req, res) => {
+  const userId = req.params.id
+  const {firstname, lastname, roles} = req.body
+  db.query('UPDATE users AS u SET u.firstname = ?, u.lastname = ?, u.roles = ? WHERE u.id = ?', [firstname, lastname, roles, userId], function (err, result) {
+    if (err) return res.status(400).send(err)
+    if (result.affectedRows === 0) return res.status(404).send()
+    res.status(200).json({message: 'Votre profile a bien été mise à jour'})
+  })
+}

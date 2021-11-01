@@ -10,6 +10,9 @@ router.get('/:id', userController.findOne)
 router.post("/register", onlyVisitor, authController.signUp);
 router.post("/login", onlyVisitor ,authController.signIn);
 
+// PUT
+router.put('/:id', isAuthenticated, onlyOwnerOrAdmin, userController.update)
+
 // DELETE
 router.delete('/:id', isAuthenticated, onlyOwnerOrAdmin, userController.removeUser);
 
