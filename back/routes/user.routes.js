@@ -9,6 +9,7 @@ router.get('/:id', userController.findOne)
 // POST
 router.post("/register", onlyVisitor, authController.signUp);
 router.post("/login", onlyVisitor ,authController.signIn);
+router.post("/logout", isAuthenticated, authController.signOut)
 
 // PUT
 router.put('/:id', isAuthenticated, onlyOwnerOrAdmin, userController.update)

@@ -48,3 +48,14 @@ module.exports.signIn = async (req, res) => {
     }
   )
 };
+
+// Fonction qui permet de se déconnecter
+module.exports.signOut = (req, res) => {
+  if (req.cookies.jwt) {
+    return res
+      .clearCookie("jwt")
+      .status(200)
+      .json({message: "Vous êtes maintenant déconnecté"});
+  }
+  return res.status(400).json({message: "Vous n'êtes actuellement pas connecté"})
+}
