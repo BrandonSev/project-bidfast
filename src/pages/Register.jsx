@@ -1,22 +1,12 @@
 import React from "react";
 import {Formik} from "formik";
-import {ToastContainer, toast} from "react-toastify";
+import {toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 
-function Register() {
+function Register({history}) {
   return (
     <div className="register">
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
       <div className="register__svg">
         <img src="image/login_svg.svg" alt="login illustration"/>
       </div>
@@ -63,39 +53,21 @@ function Register() {
             return errors;
           }}
           onSubmit={async (values, {setSubmitting}) => {
-            await fetch(`${process.env.REACT_APP_API_URL}/api/users/register`, {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                email: values.email,
-                firstname: values.prenom,
-                lastname: values.nom,
-                password: values.password,
-                genre: values.genre,
-                age: values.age,
-              }),
+            await axios.post(`${process.env.REACT_APP_API_URL}/api/users/register`, {
+              email: values.email,
+              firstname: values.prenom,
+              lastname: values.nom,
+              password: values.password,
+              genre: values.genre,
+              age: values.age,
+            }).then(async (res) => {
+              setSubmitting(false);
+              toast.success(res.data.message);
+              history.push('/connexion')
             })
-              .then(async (res) => {
-                const json = await res.json().then(data => data)
-                if (res.ok) {
-                  toast.success(json.message);
-                  values.email = ''
-                  values.nom = ''
-                  values.prenom = ''
-                  values.password = ''
-                  values.passwordConfirm = ''
-                  values.genre = null
-                  values.age = null
-                } else {
-                  toast.error(json.message)
-                }
-              })
               .catch((err) => {
-                console.error(err);
+                toast.error(err.response.data.message ?? err)
               });
-            setSubmitting(false);
           }}
         >
           {({

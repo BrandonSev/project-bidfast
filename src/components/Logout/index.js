@@ -1,9 +1,17 @@
 import React from 'react';
+import axios from "axios";
+import {toast} from "react-toastify";
 
 const Logout = () => {
-  const handleClick = (e) => {
+  const handleClick = async (e) => {
     e.preventDefault()
     // Requete axios pour déconnexion utilisateur
+    await axios.post(`${process.env.REACT_APP_API_URL}/api/users/logout`, null, {withCredentials: true})
+      .then((res) => {
+        toast.success(res.data.message)
+      }).catch(e => {
+        console.log(e)
+      })
   }
 
   return (

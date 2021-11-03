@@ -1,28 +1,19 @@
 import React from "react";
-import { Formik } from "formik";
-import { ToastContainer, toast } from "react-toastify";
-function Login() {
+import {Formik} from "formik";
+import {toast} from "react-toastify";
+import axios from "axios";
+
+function Login({history}) {
   return (
     <>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
       <section className="login">
         <div className="login__svg">
-          <img src="image/login_svg.svg" alt="login illustration" />
+          <img src="image/login_svg.svg" alt="login illustration"/>
         </div>
         <div>
           <h1 className="login__title">
             <span>
-              <img src="image/user_icon.png" alt="user icon" />
+              <img src="image/user_icon.png" alt="user icon"/>
             </span>
             Espace Membre
           </h1>
@@ -45,32 +36,18 @@ function Login() {
               }
               return errors;
             }}
-            onSubmit={async (values, { setSubmitting }) => {
-              await fetch(`${process.env.REACT_APP_API_URL}/api/users/login`, {
-                method: 'post',
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                credentials: 'include',
-                body: JSON.stringify({
-                  email: values.email,
-                  password: values.password,
-                }),
-              })
+            onSubmit={async (values, {setSubmitting}) => {
+              await axios.post(`${process.env.REACT_APP_API_URL}/api/users/login`, {
+                email: values.email,
+                password: values.password,
+              }, {withCredentials: true})
                 .then(async (res) => {
-                  const message = await res.json().then(i => i.message)
-                  if(res.ok){
-                    toast.success(message);
-                    values.email = "";
-                    values.password = "";
-                  }else{
-                    toast.error(message)
-                  }
+                  setSubmitting(false)
+                  toast.success(res.data.message)
+                  history.push('/')
+                }).catch(err => {
+                  toast.error(err.response.data.message ?? err)
                 })
-                .catch((err) => {
-                  console.error(err);
-                });
-              setSubmitting(false);
             }}
           >
             {({
