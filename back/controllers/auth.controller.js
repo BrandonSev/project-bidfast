@@ -35,15 +35,12 @@ module.exports.signIn = async (req, res) => {
       if (comparison) {
         const token = createToken(result[0].id);
         res.cookie("jwt", token, {httpOnly: true, maxAge});
-        res.status(200).json({
+        return res.status(200).json({
           message: "Bravo, vous êtes maintenant connecté!",
         });
       } else {
         return res.status(400).json({message: "Mot de passe incorrect, veuillez réessayer"})
       }
-      return res.status(200).json({
-        message: "Bravo, vous êtes maintenant connecté!",
-      });
     }
   )
 };
