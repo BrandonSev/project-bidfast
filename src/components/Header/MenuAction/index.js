@@ -15,7 +15,7 @@ const MenuAction = ({className, handleClose, activeClassName}) => {
                    activeClassName={activeClassName}>
             Mon compte
           </NavLink>
-          <Logout/>
+          <Logout handleClose={handleClose}/>
         </>
       ) : (
         <>

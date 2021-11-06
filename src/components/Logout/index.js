@@ -4,7 +4,7 @@ import {toast} from "react-toastify";
 import {userIdContext} from "../AppContext";
 import {useHistory} from "react-router-dom";
 
-const Logout = () => {
+const Logout = ({handleClose}) => {
   const history = useHistory()
   const userContext = useContext(userIdContext);
 
@@ -16,6 +16,7 @@ const Logout = () => {
         history.push('/')
         toast.success(res.data.message)
         userContext.setUserId(null)
+        handleClose()
       })
       .catch(e => {
         console.log(e)
