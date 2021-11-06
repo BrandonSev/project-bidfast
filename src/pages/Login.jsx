@@ -1,9 +1,14 @@
-import React from "react";
+import React, {useContext} from "react";
 import {Formik} from "formik";
 import {toast} from "react-toastify";
 import axios from "axios";
+import {useHistory} from "react-router-dom";
+import {userIdContext} from "../components/AppContext";
 
-function Login({history}) {
+function Login() {
+  const history = useHistory()
+  const userContext = useContext(userIdContext);
+
   return (
     <>
       <section className="login">
@@ -43,8 +48,9 @@ function Login({history}) {
               }, {withCredentials: true})
                 .then(async (res) => {
                   setSubmitting(false)
-                  toast.success(res.data.message)
                   history.push('/')
+                  toast.success(res.data.message)
+                  userContext.setUserId(0)
                 }).catch(err => {
                   toast.error(err.response.data.message ?? err)
                 })

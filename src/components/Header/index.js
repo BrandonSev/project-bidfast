@@ -44,7 +44,7 @@ const Header = () => {
   });
 
   return (
-    <nav ref={ref}>
+    <nav ref={ref} id="nav">
       <div className="container">
         <div className={`header ${open ? "is-open" : ""}`}>
           <NavLink to='/' exact className='header__logo' activeClassName=''>

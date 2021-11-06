@@ -1,0 +1,50 @@
+.profile__baner {
+  background-color: #EDF5FF;
+  padding: space(4) 0 0 0;
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+
+  > div {
+    padding-bottom: space(4);
+  }
+
+  nav {
+    background-color: white;
+    ul {
+      display: flex;
+      li {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: space(2);
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .profile__baner {
+    > div {
+      display: flex;
+      align-items: center;
+      text-align: left;
+
+      .description{
+        margin-left: space(4);
+      }
+    }
+    h2{
+      margin: 0;
+    }
+  }
+}
+@media screen and (min-width: 545px) {
+  .profile__baner {
+    nav li{
+      span {
+        padding-right: space(2);
+      }
+    }
+  }
+}

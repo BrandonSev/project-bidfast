@@ -98,16 +98,20 @@ button:hover {
   padding-top: space(2);
   font-size: 0.9rem;
 }
-
+.text-muted{
+  opacity: .5;
+}
 @import "./styles/_home";
 @import "./styles/_login";
 @import "./styles/_register";
+@import "./styles/_profil";
 @import "./styles/components/_header";
 @import "./styles/components/_burger";
 @import "./styles/components/_card";
 @import "./styles/components/_footer";
 @import "./styles/components/_likeIt";
 @import "./styles/components/_likeItCard";
+@import "./styles/components/_bid";
 @import "./components/Hero/hero";
 @import "./components/HowItWorks/index";
 @import "./components/Carousel/carousel";

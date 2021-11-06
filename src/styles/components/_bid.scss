@@ -1,0 +1,21 @@
+.bid {
+  .card {
+    margin-bottom: space(4);
+  }
+}
+
+@media screen and(min-width: 768px) {
+  .bid {
+    .card {
+      display: flex;
+      .card__body {
+        border-top: 1px solid #c4c4c4;
+      }
+      .card__image img{
+        border-radius: initial;
+        width: 390px;
+        min-height: 100%;
+      }
+    }
+  }
+}

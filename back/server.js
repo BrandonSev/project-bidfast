@@ -7,7 +7,7 @@ const db = require("./database");
 const UserRoutes = require("./routes/user.routes");
 const OfferRoutes = require("./routes/offer.routes");
 const OfferBiddingRoutes = require('./routes/offerBidding.routes')
-const {checkUser} = require("./middleware/auth.middleware");
+const {checkUser, isAuthenticated} = require("./middleware/auth.middleware");
 
 // Middleware
 const corsOptions = {
@@ -26,6 +26,9 @@ app.use("/api/users", UserRoutes);
 app.use("/api/offers", OfferRoutes);
 app.use("/api/offerBiddings", OfferBiddingRoutes);
 
+app.get('/jwtid', isAuthenticated, (req, res) => {
+  res.status(200).json({id: res.locals.user.id})
+});
 // Ecoute du serveur sur le port 3001 + Connexion a la base de donnée
 app.listen("3001", () => {
   db.connect((err) => {

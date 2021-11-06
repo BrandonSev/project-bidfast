@@ -1,15 +1,23 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import axios from "axios";
 import {toast} from "react-toastify";
+import {userIdContext} from "../AppContext";
+import {useHistory} from "react-router-dom";
 
 const Logout = () => {
+  const history = useHistory()
+  const userContext = useContext(userIdContext);
+
   const handleClick = async (e) => {
     e.preventDefault()
     // Requete axios pour déconnexion utilisateur
     await axios.post(`${process.env.REACT_APP_API_URL}/api/users/logout`, null, {withCredentials: true})
       .then((res) => {
+        history.push('/')
         toast.success(res.data.message)
-      }).catch(e => {
+        userContext.setUserId(null)
+      })
+      .catch(e => {
         console.log(e)
       })
   }
