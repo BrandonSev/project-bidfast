@@ -12,6 +12,7 @@
     background-color: white;
     overflow-x: scroll;
     ul {
+      padding-top: 5px;
       display: flex;
       li {
         display: flex;
@@ -19,9 +20,12 @@
         justify-content: center;
         padding: space(2);
         min-width: fit-content;
-        span {
-          padding-right: space(2);
+        svg {
+          margin-right: space(2);
         }
+      }
+      li:not(:last-child){
+        border-right: 1px solid rgba(0, 0, 0, 0.2)
       }
     }
   }
