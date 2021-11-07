@@ -10,6 +10,14 @@
   --danger: red;
   --space: 8px;
 }
+::-webkit-scrollbar{
+  height: 5px;
+  width: 5px;
+}
+::-webkit-scrollbar-thumb{
+  background-color: var(--primary-light);
+  border-radius: 4px;
+}
 * {
   box-sizing: border-box;
 }
@@ -60,6 +68,9 @@ button:hover {
 }
 .active {
   border-bottom: 3px solid var(--primary);
+}
+.active-link {
+  color: var(--primary-light);
 }
 .btn {
   display: inline-block;
