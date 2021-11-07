@@ -1,0 +1,40 @@
+.new__bid{
+  padding: space(4) space(4.5);
+  border-radius: 4px;
+  border: 1px solid #D5E3EC;
+
+  label{
+    display: inline-block;
+    padding-bottom: space(1);
+  }
+  button{
+    display: block;
+    margin-left: auto;
+    margin-top: space(4);
+  }
+  input[type="file"]{
+    max-height: 55px;
+  }
+  .grid{
+    .grid__group:not(:last-child){
+      margin-bottom: space(4);
+    }
+  }
+}
+@media screen and(min-width: 768px){
+  .grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: space(2);
+
+    :nth-child(1){
+      grid-column: 1;
+    }
+    :nth-child(2){
+      grid-column: 2;
+    }
+    :nth-child(5){
+      grid-column: 1 / 3;
+    }
+  }
+}

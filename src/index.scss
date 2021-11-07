@@ -39,7 +39,8 @@ h2{
   line-height: 1.2;
 }
 input,
-select {
+select,
+textarea{
   display: block;
   width: 100%;
   padding: space(2);
@@ -124,6 +125,7 @@ button:hover {
 @import "./styles/components/_likeItCard";
 @import "./styles/components/_bid";
 @import "./styles/components/_profileBid";
+@import "./styles/components/_newBid";
 @import "./components/Hero/hero";
 @import "./components/HowItWorks/index";
 @import "./components/Carousel/carousel";
