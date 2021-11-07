@@ -1,0 +1,99 @@
+.profile__bid {
+  margin-top: space(3);
+
+  h2 {
+    margin-bottom: 0;
+  }
+
+  div {
+    margin-top: space(4);
+    overflow-x: scroll;
+  }
+  ::-webkit-scrollbar{
+    height: 5px;
+  }
+  ::-webkit-scrollbar-thumb{
+    background-color: var(--primary-light);
+    border-radius: 4px;
+  }
+  table {
+    width: 100%;
+    border: 1px solid rgba(194, 201, 209, 0.5);
+
+    thead {
+      border-bottom: 1px solid #C2C9D1;
+      vertical-align: middle;
+    }
+    td, th {
+      padding: space(2);
+    }
+
+    tbody {
+      text-align: center;
+      tr:nth-child(odd){
+        background-color: #EDF5FF;
+      }
+    }
+  }
+
+  .green {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #3CC13BAC;
+    border: 1px solid #3CC13BAC;
+    border-radius: 4px;
+    padding: space(0.5) space(1);
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      margin-right: space(1);
+      background: #47e787;
+      border-radius: 8px;
+    }
+  }
+
+  .red {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: red;
+    border: 1px solid red;
+    border-radius: 4px;
+    padding: space(0.5) space(1);
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      margin-right: space(1);
+      background: red;
+      border-radius: 8px;
+    }
+  }
+
+  .yellow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #e9f100;
+    border: 1px solid yellow;
+    border-radius: 4px;
+    padding: space(0.5) space(1);
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      margin-right: space(1);
+      background: yellow;
+      border-radius: 8px;
+    }
+  }
+
+}
