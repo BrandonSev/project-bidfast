@@ -16,7 +16,7 @@ const NewBid = () => {
           </div>
           <div className="grid__group">
             <label htmlFor="titre">Date d'expiration:</label>
-            <input type="text" id="titre" />
+            <input type="date" id="titre" />
           </div>
           <div className="grid__group">
             <label htmlFor="titre">Image:</label>
@@ -24,7 +24,7 @@ const NewBid = () => {
           </div>
           <div className="grid__group">
             <label htmlFor="titre">Description:</label>
-            <textarea id="titre" />
+            <textarea id="titre" rows={10} />
           </div>
         </div>
         <button className="btn btn-small btn-primary">Envoyer</button>
