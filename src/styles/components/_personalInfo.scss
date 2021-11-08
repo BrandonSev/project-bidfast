@@ -1,0 +1,45 @@
+.personal {
+  > div {
+    padding: space(3) space(4);
+    border: 1px solid #D5E3EC;
+  }
+  form {
+    button{
+      display: block;
+      margin-left: auto;
+      margin-top: space(2);
+    }
+  }
+}
+.personal__group{
+  margin-bottom: space(2);
+  white-space: nowrap;
+}
+.personal__form{
+  label{
+    display: block;
+    padding-bottom: space(2);
+  }
+}
+.personal__group.avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0;
+}
+@media screen and(min-width: 768px){
+  .personal__form {
+    display: flex;
+    div:not(.personal__group):nth-child(2){
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: space(2);
+      padding-left: space(4);
+      width: 100%;
+    }
+  }
+  .personal__group{
+    margin-bottom: 0;
+  }
+}

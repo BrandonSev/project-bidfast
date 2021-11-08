@@ -2,29 +2,40 @@ import React, {useEffect, useState} from 'react';
 import Bid from "../components/Bid";
 import ProfileBid from "../components/ProfileBid";
 import NewBid from "../components/NewBid";
+import PersonalInfo from "../components/PersonalInfo";
 
 const Profil = () => {
   const [bidBlock, setBidBlock] = useState(true);
   const [offerBlock, setOfferBlock] = useState(false);
   const [newBid, setNewBid] = useState(false);
+  const [personalBlock, setPersonalBlock] = useState(false);
   const handleClick = e => {
     e.preventDefault()
     if (e.target.id === 'offer') {
       setBidBlock(false)
       setOfferBlock(true)
       setNewBid(false)
+      setPersonalBlock(false)
 
     }
     if (e.target.id === 'annonce') {
       setBidBlock(true)
       setOfferBlock(false)
       setNewBid(false)
+      setPersonalBlock(false)
 
     }
     if (e.target.id === 'newOffer') {
       setBidBlock(false)
       setOfferBlock(false)
       setNewBid(true)
+      setPersonalBlock(false)
+    }
+    if (e.target.id === 'informations') {
+      setBidBlock(false)
+      setOfferBlock(false)
+      setNewBid(false)
+      setPersonalBlock(true)
     }
   }
 
@@ -74,13 +85,9 @@ const Profil = () => {
               </svg>
               <a href={'/mon-compte'} onClick={handleClick} id="newOffer">Déposer une annonce</a>
             </li>
-            <li>
-              <svg width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M18.806 5.102c.473-.385.733-.898.733-1.443s-.26-1.057-.733-1.443L16.824.598C16.35.212 15.724 0 15.056 0c-.667 0-1.295.212-1.766.597L0 11.413v4.505h5.516l13.29-10.816Zm-3.75-3.061 1.984 1.617-1.987 1.617-1.983-1.618 1.986-1.616ZM2.5 13.877V12.26l8.8-7.162 1.982 1.619-8.798 7.16H2.5ZM0 17.96h20V20H0v-2.04Z"
-                  fill="#000"/>
-              </svg>
-              <a href={''} id="informations">Mes informations</a>
+            <li className={`${personalBlock ? 'active-link' : ''}`}>
+              <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <a href={'/mon-compte'} onClick={handleClick} id="informations">Mes informations</a>
             </li>
           </ul>
         </nav>
@@ -88,6 +95,7 @@ const Profil = () => {
       {bidBlock && <Bid/>}
       {offerBlock && <ProfileBid/>}
       {newBid && <NewBid/>}
+      {personalBlock && <PersonalInfo/>}
     </>
   );
 };
