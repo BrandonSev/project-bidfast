@@ -48,7 +48,7 @@ function Login() {
               }, {withCredentials: true})
                 .then(async (res) => {
                   setSubmitting(false)
-                  history.push('/')
+                  history.push('/mon-compte')
                   toast.success(res.data.message)
                   userContext.setUserId(0)
                 }).catch(err => {

@@ -97,7 +97,7 @@ button:hover {
 }
 
 .btn-primary {
-  max-width: max-content;
+  min-width: fit-content;
   color: #fff;
   background-color: var(--primary);
 }
