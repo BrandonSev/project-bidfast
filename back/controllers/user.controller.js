@@ -31,3 +31,9 @@ module.exports.update = (req, res) => {
     res.status(200).json({message: 'Votre profile a bien été mise à jour'})
   })
 }
+module.exports.findOffer = (req, res) => {
+  db.query('SELECT * from offers WHERE userId=?', [req.params.id], function (err, result) {
+    if(err) return res.status(400).send()
+    res.status(200).send(result[0])
+  })
+}

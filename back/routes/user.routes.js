@@ -6,6 +6,7 @@ const {isAuthenticated, onlyOwnerOrAdmin, onlyVisitor} = require("../middleware/
 //GET
 router.get('/', userController.findAllUsers)
 router.get('/:id', userController.findOne)
+router.get('/:id/offers', userController.findOffer)
 // POST
 router.post("/register", onlyVisitor, authController.signUp);
 router.post("/login", onlyVisitor ,authController.signIn);

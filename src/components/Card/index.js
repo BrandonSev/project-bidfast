@@ -1,6 +1,10 @@
 import React from "react";
+import TimeAgo from "react-timeago";
+import frenchStrings from 'react-timeago/lib/language-strings/fr'
+import buildFormatter from 'react-timeago/lib/formatters/buildFormatter'
 
-function Card({ style, title }) {
+function Card({ style, title, createdAt, startPrice}) {
+  const formatter = buildFormatter(frenchStrings)
   return (
     <div className="card" style={style}>
       <div className="card__image">
@@ -9,9 +13,14 @@ function Card({ style, title }) {
       <div className="card__body">
         <div className="card__body_head">
           <h4>{title}</h4>
-          <p>Temps restant: 14h 15min 10s</p>
+          <p>Mise en ligne :
+          &nbsp;<TimeAgo date={createdAt} formatter={formatter}/>
+          </p>
+          <p>Temps restant:
+            &nbsp;<TimeAgo date={createdAt} formatter={formatter}/>
+          </p>
           <p>
-            Prix de départ: 50€,&nbsp;
+            Prix de départ: {startPrice}€,&nbsp;
             <span className="text-primary bold">Prix en cours: 350€</span>
           </p>
         </div>
