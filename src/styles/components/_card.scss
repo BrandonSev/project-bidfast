@@ -16,6 +16,8 @@
 
     .card__body_head {
       h4 {
+        display: flex;
+        justify-content: space-between;
         font-size: 16px;
         font-weight: 500;
         white-space: nowrap;

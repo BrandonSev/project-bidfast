@@ -1,40 +1,51 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import TimeAgo from "react-timeago";
 import frenchStrings from 'react-timeago/lib/language-strings/fr'
 import buildFormatter from 'react-timeago/lib/formatters/buildFormatter'
+import CountDown from "../CountDown";
+import axios from "axios";
 
-function Card({ style, title, createdAt, startPrice}) {
+function Card({id, style, title, expireAt, createdAt, startPrice, description}) {
+  const [data, setData] = useState([]);
   const formatter = buildFormatter(frenchStrings)
+  useEffect(() => {
+    (async() => await axios.get(`${process.env.REACT_APP_API_URL}/api/offers/${id}/offerBidding?limit=1&order=DESC`)
+      .then(res => {
+        setData(res.data[0])
+      })
+      .catch(err => console.log(err)))()
+  }, [id]);
+
   return (
     <div className="card" style={style}>
       <div className="card__image">
-        <img src="image/image.png" alt="image" />
+        <img src="image/image.png" alt="image"/>
       </div>
       <div className="card__body">
         <div className="card__body_head">
-          <h4>{title}</h4>
-          <p>Mise en ligne :
-          &nbsp;<TimeAgo date={createdAt} formatter={formatter}/>
-          </p>
+          <h4>
+            {title}
+            <span>
+              <TimeAgo date={new Date(createdAt)} formatter={formatter} />
+            </span>
+          </h4>
+
           <p>Temps restant:
-            &nbsp;<TimeAgo date={createdAt} formatter={formatter}/>
+            &nbsp; <CountDown date={new Date(expireAt).getTime()}/>
           </p>
           <p>
             Prix de départ: {startPrice}€,&nbsp;
-            <span className="text-primary bold">Prix en cours: 350€</span>
+            <span className="text-primary bold">Prix en cours: {data.price ? data.price + '€' : 'Aucune offre'}</span>
           </p>
         </div>
         <div className="card__body_desc">
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad atque
-            aut autem, corporis deleniti dolores, et eveniet labore laborum
-            maiores perferendis rem sequi tempore, unde voluptates. Neque nulla
-            reprehenderit tempore.
+            {description}
           </p>
         </div>
         <div className="card__footer">
           <div className="card__footer_author">
-            <img src="/image/avatar_mini.png" alt="avatar" />
+            <img src="/image/avatar_mini.png" alt="avatar"/>
             <p>Mise en ligne par: Julia</p>
           </div>
           <div>

@@ -32,8 +32,10 @@ module.exports.update = (req, res) => {
   })
 }
 module.exports.findOffer = (req, res) => {
-  db.query('SELECT * from offers WHERE userId=?', [req.params.id], function (err, result) {
+  let sql = 'SELECT * from offers WHERE userId=?';
+  if(req.query.order) sql += ` ORDER BY createdAt ${req.query.order}`
+  db.query(sql, [req.params.id], function (err, result) {
     if(err) return res.status(400).send()
-    res.status(200).send(result[0])
+    res.status(200).send(result)
   })
 }
