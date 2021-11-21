@@ -24,7 +24,7 @@ module.exports.offerCreate = (req, res) => {
 }
 module.exports.findOfferBidding = (req, res) => {
   let sql = 'SELECT * FROM offer_bidding WHERE offerId=?';
-  if(req.query.order) sql += ` ORDER BY createdAt ${req.query.order}`
+  if(req.query.order) sql += ` ORDER BY price ${req.query.order}`
   if(req.query.limit) sql += ` LIMIT ${req.query.limit}`
   db.query(sql, [req.params.id], function (err, result) {
     if (err) return res.status(400).send(err)

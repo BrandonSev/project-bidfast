@@ -88,5 +88,24 @@
       border-radius: 8px;
     }
   }
+  .primary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    border-radius: 4px;
+    padding: space(0.5) space(1);
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      margin-right: space(1);
+      background: var(--primary);
+      border-radius: 8px;
+    }
+  }
 
 }

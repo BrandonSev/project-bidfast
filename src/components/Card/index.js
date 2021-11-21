@@ -9,7 +9,7 @@ function Card({id, style, title, expireAt, createdAt, startPrice, description}) 
   const [data, setData] = useState([]);
   const formatter = buildFormatter(frenchStrings)
   useEffect(() => {
-    (async() => await axios.get(`${process.env.REACT_APP_API_URL}/api/offers/${id}/offerBidding?limit=1&order=DESC`)
+    (async() => await axios.get(`${process.env.REACT_APP_API_URL}/api/offers/${id}/offerBiddings?limit=1&order=DESC`)
       .then(res => {
         setData(res.data[0])
       })

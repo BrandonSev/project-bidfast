@@ -18,24 +18,23 @@ const Header = () => {
     return <Redirect to={e.target.href}/>
   }
   const controlNav = () => {
-    window.onscroll = function () {
-      const currentScrollPos = window.pageYOffset;
-      if (prevScrollPos > currentScrollPos) {
-        ref.current.style.top = "0";
-        ref.current.style.boxShadow = '0 3px 55px rgba(0,0,0,0.19)';
-        ref.current.style.borderBottom = '2px solid var(--primary-light)';
-        ref.current.style.transition = 'top .5s ease-in-out, box-shadow .5s ease'
-        if(currentScrollPos < 55){
-          ref.current.style.boxShadow = '';
-          ref.current.style.borderBottom = '';
-        }
-      } else {
-        ref.current.style.top = -ref.current.clientHeight - 2 /* 3 = width Border */ + "px";
+    const currentScrollPos = window.pageYOffset;
+    if (prevScrollPos > currentScrollPos) {
+      ref.current.style.top = "0";
+      ref.current.style.boxShadow = '0 3px 55px rgba(0,0,0,0.19)';
+      ref.current.style.borderBottom = '2px solid var(--primary-light)';
+      ref.current.style.transition = 'top .5s ease-in-out, box-shadow .5s ease'
+      if (currentScrollPos < 55) {
         ref.current.style.boxShadow = '';
+        ref.current.style.borderBottom = '';
       }
-      setPrevScrollPos(currentScrollPos)
+    } else {
+      ref.current.style.top = -ref.current.clientHeight - 2 /* 3 = width Border */ + "px";
+      ref.current.style.boxShadow = '';
     }
+    setPrevScrollPos(currentScrollPos)
   }
+
   useEffect(() => {
     window.addEventListener('scroll', controlNav)
     return () => {

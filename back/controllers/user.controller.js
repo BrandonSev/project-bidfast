@@ -39,3 +39,9 @@ module.exports.findOffer = (req, res) => {
     res.status(200).send(result)
   })
 }
+module.exports.findOfferBidding = (req, res) => {
+  db.query('SELECT * from offer_bidding JOIN offers ON offers.id=offer_bidding.offerId WHERE offer_bidding.userId = ? ORDER BY offer_bidding.price ASC, offer_bidding.createdAt DESC', [req.params.id], function (err, result) {
+    if(err) return res.status(400).send()
+    res.status(200).send(result)
+  })
+}

@@ -1,10 +1,37 @@
-import React from 'react';
+import React, {useContext, useEffect, useState} from 'react';
+import axios from "axios";
+import {userIdContext} from "../AppContext";
 
 const ProfileBid = () => {
+  const [data, setData] = useState([]);
+  const [myOffers, setMyOffers] = useState([])
+  const [loading, setLoading] = useState(true);
+  const userContext = useContext(userIdContext);
+  useEffect(() => {
+    (async () => {
+      await axios.get(`${process.env.REACT_APP_API_URL}/api/users/${userContext.userId}/offerBiddings`)
+        .then((res) => {
+          setData([...new Map(res.data.map(item => [JSON.stringify(item.id), item])).values()])
+        })
+        .catch(err => console.log(err))
+    })()
+  }, [userContext.userId]);
+
+  useEffect(() => {
+    data.map(async (r, i) => {
+      await axios.get(`${process.env.REACT_APP_API_URL}/api/offers/${r.id}/offerBiddings?limit=1&order=DESC`)
+        .then(res => {
+          setMyOffers((prevState) => [...prevState, res.data[0].price])
+        })
+    })
+    setLoading(false)
+  }, [data]);
+
+
   return (
     <div className={"profile__bid container"}>
       <h2>Suivi des offres</h2>
-      <p className="text-muted">Liste les offres auxquelles je participe ou auxquelles j’ai participées</p>
+      <p className="text-muted">Liste les annonces auxquelles je participe ou auxquelles j’ai participées</p>
       <div>
         <table>
           <thead>
@@ -15,37 +42,35 @@ const ProfileBid = () => {
             <th>Date d'expiration</th>
             <th>Prix de départ</th>
             <th>Prix actuel</th>
+            <th>Mon offre</th>
             <th>Status</th>
           </tr>
           </thead>
           <tbody>
-          <tr>
-            <td>Mon titre</td>
-            <td>Ma description</td>
-            <td>21 mars 2021</td>
-            <td>21 Fevrier 2022</td>
-            <td>190€</td>
-            <td>1900€</td>
-            <td><span className="green">Terminer</span></td>
-          </tr>
-          <tr>
-            <td>Mon titre</td>
-            <td>Ma description</td>
-            <td>21 mars 2021</td>
-            <td>21 Fevrier 2022</td>
-            <td>190€</td>
-            <td>1900€</td>
-            <td><span className="red">Terminer</span></td>
-          </tr>
-          <tr>
-            <td>Mon titre</td>
-            <td>Ma description</td>
-            <td>21 mars 2021</td>
-            <td>21 Fevrier 2022</td>
-            <td>190€</td>
-            <td>1900€</td>
-            <td><span className="yellow">Terminer</span></td>
-          </tr>
+          {loading ? <p>Chargepent..</p> : (
+            data.length ? data.map((data, index) => {
+              return (
+                <tr key={data.id}>
+                  <td>{data.name}</td>
+                  <td>{data.content}</td>
+                  <td>{new Date(data.createdAt).toLocaleString()}</td>
+                  <td>{new Date(data.expireAt).toLocaleString()}</td>
+                  <td>{data.startPrice}€</td>
+                  <td>{myOffers[index]}€</td>
+                  <td>{data.price}€</td>
+                  <td><span
+                    className={`${new Date().getTime() < new Date(data.expireAt).getTime() ? 'primary' : (new Date().getTime() > new Date(data.expireAt).getTime() && data.price >= myOffers[index]) ? 'green' : 'red'}`}>
+                        <span>
+                         {new Date().getTime() < new Date(data.expireAt).getTime() ? 'En cours' : (new Date().getTime() > new Date(data.expireAt).getTime() && data.price >= myOffers[index]) ? 'Remporter' : 'Perdu'}
+
+                        </span>
+                  </span></td>
+                </tr>
+              )
+            }) : <tr>
+              <td colSpan={8}>Vous n'avez fait aucune enchere actuellement</td>
+            </tr>
+          )}
           </tbody>
         </table>
       </div>

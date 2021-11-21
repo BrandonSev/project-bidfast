@@ -5,7 +5,7 @@ const router = require("express").Router();
 // GET
 router.get('/', offerController.getAll)
 router.get('/:id', offerController.findOne)
-router.get('/:id/offerBidding', offerController.findOfferBidding)
+router.get('/:id/offerBiddings', offerController.findOfferBidding)
 //POST
 router.post('/create', isAuthenticated, offerController.offerCreate)
 
