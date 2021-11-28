@@ -1,14 +1,17 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useState} from 'react';
 import Bid from "../components/Bid";
 import ProfileBid from "../components/ProfileBid";
 import NewBid from "../components/NewBid";
 import PersonalInfo from "../components/PersonalInfo";
+import {userIdContext} from "../components/AppContext";
+import ProfileAvatar from "../components/ProfileAvatar";
 
 const Profil = () => {
   const [bidBlock, setBidBlock] = useState(true);
   const [offerBlock, setOfferBlock] = useState(false);
   const [newBid, setNewBid] = useState(false);
   const [personalBlock, setPersonalBlock] = useState(false);
+  const personalInfo = useContext(userIdContext)
   const handleClick = e => {
     e.preventDefault()
     if (e.target.id === 'offer') {
@@ -16,14 +19,12 @@ const Profil = () => {
       setOfferBlock(true)
       setNewBid(false)
       setPersonalBlock(false)
-
     }
     if (e.target.id === 'annonce') {
       setBidBlock(true)
       setOfferBlock(false)
       setNewBid(false)
       setPersonalBlock(false)
-
     }
     if (e.target.id === 'newOffer') {
       setBidBlock(false)
@@ -41,13 +42,13 @@ const Profil = () => {
 
   return (
     <>
-      <div className="profile__baner">
+      <div className="profile__banner">
         <div className="container">
           <div className="avatar">
-            <img src="./image/avatar.png" alt="avatar"/>
+            <ProfileAvatar />
           </div>
           <div className="description">
-            <h2>Bonjour, Brandon</h2>
+            <h2>Bonjour, {personalInfo.personalInfo.firstname}</h2>
             <p className="text-muted">Ici retrouvez toutes vos informations de compte, vos enchères en cours...</p>
           </div>
         </div>

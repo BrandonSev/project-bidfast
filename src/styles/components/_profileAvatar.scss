@@ -1,0 +1,51 @@
+.avatar_profile__container {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  border-radius: 100%;
+  transition: .4s ease;
+  input[type="file"] {
+    opacity: 0;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+  }
+  img {
+    height: 100%;
+    width: 100%;
+    max-width: 150px;
+    object-fit: fill;
+  }
+  #test {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    padding: space(1.2);
+    cursor: pointer;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.48);
+    backdrop-filter: blur(14px);
+    border-radius: 100px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: .4s ease;
+    :nth-child(2){
+      margin-left: space(1);
+    }
+    :hover{
+      cursor: pointer;
+    }
+  }
+
+}
+
+.avatar_profile__container.hover {
+  #test{
+  opacity: 1;
+  }
+}

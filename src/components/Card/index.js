@@ -5,7 +5,7 @@ import buildFormatter from 'react-timeago/lib/formatters/buildFormatter'
 import CountDown from "../CountDown";
 import axios from "axios";
 
-function Card({id, style, title, expireAt, createdAt, startPrice, description}) {
+function Card({id, style, title, expireAt, createdAt, startPrice, description, image}) {
   const [data, setData] = useState([]);
   const formatter = buildFormatter(frenchStrings)
   useEffect(() => {
@@ -19,7 +19,7 @@ function Card({id, style, title, expireAt, createdAt, startPrice, description}) 
   return (
     <div className="card" style={style}>
       <div className="card__image">
-        <img src="image/image.png" alt="image"/>
+        <img src={`${image ? image : 'image/image.png'}`} alt="image"/>
       </div>
       <div className="card__body">
         <div className="card__body_head">
@@ -40,7 +40,7 @@ function Card({id, style, title, expireAt, createdAt, startPrice, description}) 
         </div>
         <div className="card__body_desc">
           <p>
-            {description}
+            {description ? description.substring(0,250) : ''}...
           </p>
         </div>
         <div className="card__footer">

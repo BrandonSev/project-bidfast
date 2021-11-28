@@ -15,7 +15,7 @@ const corsOptions = {
   credentials: true
 }
 app.use(cors(corsOptions));
-
+app.use(express.static(__dirname))
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());

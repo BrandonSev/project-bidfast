@@ -1,6 +1,9 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import {userIdContext} from "../AppContext";
+import ProfileAvatar from "../ProfileAvatar";
 
 const PersonalInfo = () => {
+  const userContext = useContext(userIdContext)
   return (
     <div className="personal container">
       <h2>Mes informations</h2>
@@ -10,32 +13,29 @@ const PersonalInfo = () => {
             <div>
               <div className="personal__group avatar">
                 <label htmlFor="image">Photo de profil</label>
-                <img src="./image/avatar.png" alt="avatar"/>
+                <ProfileAvatar />
               </div>
             </div>
             <div>
               <div className="personal__group">
                 <label htmlFor="image">Pseudo:</label>
-                <input type="text"/>
+                <input type="text" value={userContext.personalInfo.firstname} disabled/>
               </div>
               <div className="personal__group">
                 <label htmlFor="email">Email:</label>
-                <input type="email"/>
+                <input type="email" value={userContext.personalInfo.email} disabled/>
               </div>
               <div className="personal__group">
                 <label htmlFor="image">Pays:</label>
-                <input type="text"/>
+                <input type="text" value="France" disabled/>
               </div>
               <div className="personal__group">
                 <label htmlFor="phone">Numéro de telephone:</label>
-                <input type="tel"/>
+                <input type="tel" value={'07-68-78-88-41'}/>
               </div>
               <div className="personal__group">
                 <label htmlFor="image">Genre:</label>
-                <select name="genre" id="genre">
-                  <option value="male">Homme</option>
-                  <option value="female">Femme</option>
-                </select>
+                <input type="tel" value={'Homme'}/>
               </div>
             </div>
           </div>

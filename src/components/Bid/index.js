@@ -25,7 +25,7 @@ const Bid = () => {
       <h2>Mes annonces en ligne</h2>
       {loading ? (<CardSkeleton/>) : (
         data.length ? data.map(res => {
-          return <Card id={res.id} title={res.name} expireAt={res.expireAt} createdAt={res.createdAt}
+          return <Card id={res.id} title={res.name} expireAt={res.expireAt} image={res.image} createdAt={res.createdAt}
                        startPrice={res.startPrice} description={res.content}/>
         }) : (
           <>

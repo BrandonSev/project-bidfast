@@ -26,7 +26,7 @@ const CountDown = ({date}) => {
   return (
     <span style={{ color: expire ? 'red' : '' }}>
       {!expire ?
-        `${remainingTime.days > 0 ? remainingTime.days + 'jours' : ''} ${remainingTime.hours > 0 ? remainingTime.hours + 'heures' : ''} ${remainingTime.minutes > 0 ? remainingTime.minutes + 'minutes' : ''} et ${remainingTime.seconds} secondes`
+        `${remainingTime.days > 0 ? remainingTime.days + 'j' : ''} ${remainingTime.hours > 0 ? remainingTime.hours + 'h' : ''} ${remainingTime.minutes > 0 ? remainingTime.minutes + 'min' : ''} et ${remainingTime.seconds}s`
         : `L'offre a expiré`
       }
     </span>

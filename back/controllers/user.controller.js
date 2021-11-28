@@ -23,12 +23,32 @@ module.exports.removeUser = (req, res) => {
   })
 }
 module.exports.update = (req, res) => {
-  const userId = req.params.id
-  const {firstname, lastname, roles} = req.body
-  db.query('UPDATE users AS u SET u.firstname = ?, u.lastname = ?, u.roles = ? WHERE u.id = ?', [firstname, lastname, roles, userId], function (err, result) {
+  const userId = req.params.id || res.locals.user.id
+  const {firstname, lastname, roles, avatar, genre} = req.body
+  if(!firstname && !lastname && !roles && !avatar && !req.files[0].filename && !genre){
+    return res.status(400).json({message: 'Vous devez entrer toutes les informations nécessaires'})
+  }
+  let sql = 'UPDATE users SET ? WHERE id=?';
+  let userInformation = {}
+  if(firstname){
+    userInformation.firstname = firstname
+  }
+  if(lastname){
+    userInformation.lastname = lastname
+  }
+  if(roles){
+    userInformation.roles = roles
+  }
+  if(avatar || req.files[0].filename){
+    userInformation.avatar = avatar || req.files[0].filename
+  }
+  if(genre){
+    userInformation.genre = genre
+  }
+  db.query(sql, [userInformation, userId], function (err, result) {
     if (err) return res.status(400).send(err)
     if (result.affectedRows === 0) return res.status(404).send()
-    res.status(200).json({message: 'Votre profile a bien été mise à jour'})
+    res.status(200).json({message: 'Votre profile a bien été mise à jour', i: req.files[0].filename})
   })
 }
 module.exports.findOffer = (req, res) => {
