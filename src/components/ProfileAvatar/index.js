@@ -13,7 +13,7 @@ const ProfileAvatar = () => {
     formData.append('image', image, image.name)
     await axios.put(`${process.env.REACT_APP_API_URL}/api/users/${userId}`, formData, {withCredentials: true})
       .then(res => {
-        setPersonalInfo({...personalInfo, avatar: res.data.i})
+        setPersonalInfo({...personalInfo, avatar: res.data.data.avatar})
         toast.success('Votre avatar a bien été modifié')
       })
       .catch(err => console.log(err))
