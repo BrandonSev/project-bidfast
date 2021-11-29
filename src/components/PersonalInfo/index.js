@@ -7,12 +7,12 @@ import {toast} from "react-toastify";
 const PersonalInfo = () => {
   const {userId, personalInfo, setPersonalInfo} = useContext(userIdContext)
   const [change, setChange] = useState(false);
-  const [state, setSate] = useState({firstname: personalInfo.firstname})
+  const [state, setSate] = useState({firstname: personalInfo.firstname, genre: personalInfo.genre})
   const handleChange = useCallback((e) => {
     setChange(true)
     const name = e.target.name
     const value = e.target.value
-    setSate({...state, [name]: value})
+    setSate(prevState => ({...prevState, [name]: value}))
   }, [])
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -32,6 +32,10 @@ const PersonalInfo = () => {
     }).catch(err => {
       console.log(err)
     })
+    setChange(false)
+  }
+  const handleClick = () => {
+    setSate({firstname: personalInfo.firstname, genre: personalInfo.genre})
     setChange(false)
   }
   return (
@@ -66,14 +70,18 @@ const PersonalInfo = () => {
               <div className="personal__group">
                 <label htmlFor="image">Genre:</label>
                 <select name="genre" id="genre" onChange={handleChange}>
-                  <option value="homme" selected={personalInfo.genre === 'homme' && true}>Homme</option>
-                  <option value="femme" selected={personalInfo.genre === 'femme' && true}>Femme</option>
+                  <option value="" disabled>{personalInfo.genre}</option>
+                  <option value="homme" selected={state.genre === 'homme' && true}>Homme</option>
+                  <option value="femme" selected={state.genre === 'femme' && true}>Femme</option>
                 </select>
               </div>
             </div>
           </div>
-          <button type="submit" className="btn btn-primary" disabled={!change}>Modifier mes informations
-          </button>
+          <div className="button__action">
+            <button type="submit" className='btn btn-primary' disabled={!change}>Modifier mes informations</button>
+            {change && <button type="button" onClick={handleClick} className="btn btn-danger">Annuler les modifications
+            </button>}
+          </div>
         </form>
       </div>
     </div>

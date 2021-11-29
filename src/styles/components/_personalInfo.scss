@@ -27,7 +27,18 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 0;
-
+}
+.button__action{
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  margin-top: space(2);
+  button{
+    width: 100%;
+  }
+  :last-child{
+    margin-left: space(2);
+  }
 }
 @media screen and(min-width: 768px){
   .personal__form {
@@ -42,5 +53,8 @@
   }
   .personal__group{
     margin-bottom: 0;
+  }
+  .button__action{
+    width: fit-content;
   }
 }
