@@ -9,6 +9,7 @@ import React, {useEffect, useState} from "react";
 import {userIdContext} from "./components/AppContext";
 import axios from "axios";
 import Profil from "./pages/Profil";
+import Acheter from "./pages/Acheter";
 
 function App() {
   const [userId, setUserId] = useState(null);
@@ -45,6 +46,7 @@ function App() {
         <Header/>
         <Switch>
           <Route path='/' exact component={Home}/>
+          <Route path='/acheter' exact component={Acheter}/>
           <Route path='/connexion' exact>
             {userId ? <Redirect to={"/"}/> : <Login/>}
           </Route>
