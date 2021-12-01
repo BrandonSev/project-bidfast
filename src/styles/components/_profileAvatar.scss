@@ -5,6 +5,7 @@
   overflow: hidden;
   border-radius: 100%;
   transition: .4s ease;
+
   input[type="file"] {
     opacity: 0;
     top: 0;
@@ -12,12 +13,14 @@
     left: 0;
     position: absolute;
   }
+
   img {
     height: 100%;
     width: 100%;
     max-width: 150px;
     object-fit: fill;
   }
+
   #test {
     display: flex;
     align-items: center;
@@ -35,18 +38,19 @@
     transform: translate(-50%, -50%);
     opacity: 0;
     transition: .4s ease;
-    :hover{
+
+    :hover {
       cursor: pointer;
     }
-    .upload__icon{
+
+    .upload__icon {
       width: 28px;
     }
   }
-
 }
 
 .avatar_profile__container.hover {
-  #test{
-  opacity: 1;
+  #test {
+    opacity: 1;
   }
 }

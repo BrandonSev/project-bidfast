@@ -6,6 +6,6 @@ module.exports.storage = multer.diskStorage({
     cb(null, path.join(__dirname, '../../public'))
   },
   filename: function(req, file, cb) {
-    cb(null, `/image/uploaded_files/${Date.now()}-${file.originalname}.${file.mimetype.split('/')[1]}`)
+    cb(null, `/image/uploaded_files/${Date.now()}-${file.originalname}`)
   }
 })
