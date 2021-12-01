@@ -68,7 +68,6 @@ module.exports.isAdmin = async (req, res, next) => {
  * @returns {Promise<*>}
  */
 module.exports.onlyOwnerOrAdmin = async (req, res, next) => {
-  console.log(res.locals.user)
   if (parseInt(req.params.id) === res.locals.user.id || res.locals.user.roles === 'ADMIN') {
     next()
   } else {

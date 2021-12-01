@@ -31,7 +31,7 @@ app.get('/jwtid', isAuthenticated, (req, res) => {
 });
 // Ecoute du serveur sur le port 3001 + Connexion a la base de donnée
 app.listen("3001", () => {
-  db.connect((err) => {
+  db.getConnection((err) => {
     if (err) {
       console.error('Probleme lors de la Connexion à la base de donnée');
       return;

@@ -13,7 +13,7 @@ const Hero = () => {
           Remportez un bien parmis plus de 15.000+ annonces, cliquez ici pour
           accédez au offres
         </p>
-        <NavLink to={'/annonces'} className="hero__left_show btn btn-big btn-primary">
+        <NavLink to={'/acheter'} className="hero__left_show btn btn-big btn-primary">
           Voir les annonces
         </NavLink>
         <p>N’hésitez plus, inscrivez-vous dés maintenant, en cliquant
