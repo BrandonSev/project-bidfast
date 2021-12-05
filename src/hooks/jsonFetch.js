@@ -1,44 +1,39 @@
-import {useCallback, useEffect, useState} from 'react';
+import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 
-const useJsonFetch = (url = '', params = {}) => {
-
+const useJsonFetch = (url = "", params = {}) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   if (params.data instanceof FormData) {
-    params.data = Object.fromEntries(params.body)
+    params.data = Object.fromEntries(params.body);
   }
 
-  if (params.data && typeof params.body === 'object') {
-    params.data = JSON.stringify(params.body)
+  if (params.data && typeof params.body === "object") {
+    params.data = JSON.stringify(params.body);
   }
 
   const fetchUrl = useCallback(async () => {
     const options = {
       headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'X-Requested-With': 'XMLHttpRequest'
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "X-Requested-With": "XMLHttpRequest",
       },
-      ...params
-    }
-    const response = await axios(url, options)
+      ...params,
+    };
+    const response = await axios(url, options);
     const data = await response.json();
 
-    setData(data)
-    setLoading(false)
-  }, [])
+    setData(data);
+    setLoading(false);
+  }, []);
 
   useEffect(() => {
-    fetchUrl()
+    fetchUrl();
   }, [url, params]);
 
+  return [data, loading];
+};
 
-  return [
-    data,
-    loading
-  ]
-}
-
-export {useJsonFetch}
+export { useJsonFetch };

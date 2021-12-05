@@ -6,7 +6,9 @@
 :root {
   --primary: #258aff;
   --primary-light: #258aff80;
+  --blue-light: #EDF5FF;
   --green: #47e787;
+  --grey: rgba(196, 196, 196, 0.59);
   --danger: red;
   --space: 8px;
 }
@@ -141,6 +143,10 @@ button:hover {
 
 .text-muted {
   opacity: .5;
+}
+
+.w-100 {
+  width: 100%;
 }
 
 @import "./styles/_home";

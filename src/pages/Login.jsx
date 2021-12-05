@@ -1,24 +1,24 @@
-import React, {useContext} from "react";
-import {Formik} from "formik";
-import {toast} from "react-toastify";
+import React, { useContext } from "react";
+import { Formik } from "formik";
+import { toast } from "react-toastify";
 import axios from "axios";
-import {useHistory} from "react-router-dom";
-import {userIdContext} from "../components/AppContext";
+import { useHistory } from "react-router-dom";
+import { userIdContext } from "../components/AppContext";
 
 function Login() {
-  const history = useHistory()
+  const history = useHistory();
   const userContext = useContext(userIdContext);
 
   return (
     <>
       <section className="login">
         <div className="login__svg">
-          <img src="image/login_svg.svg" alt="login illustration"/>
+          <img src="image/login_svg.svg" alt="login illustration" />
         </div>
         <div>
           <h1 className="login__title">
             <span>
-              <img src="image/user_icon.png" alt="user icon"/>
+              <img src="image/user_icon.png" alt="user icon" />
             </span>
             Espace Membre
           </h1>
@@ -41,31 +41,37 @@ function Login() {
               }
               return errors;
             }}
-            onSubmit={async (values, {setSubmitting}) => {
-              await axios.post(`${process.env.REACT_APP_API_URL}/api/users/login`, {
-                email: values.email,
-                password: values.password,
-              }, {withCredentials: true})
+            onSubmit={async (values, { setSubmitting }) => {
+              await axios
+                .post(
+                  `${process.env.REACT_APP_API_URL}/api/users/login`,
+                  {
+                    email: values.email,
+                    password: values.password,
+                  },
+                  { withCredentials: true }
+                )
                 .then(async (res) => {
-                  setSubmitting(false)
-                  history.push('/mon-compte')
-                  toast.success(res.data.message)
-                  userContext.setUserId(0)
-                }).catch(err => {
-                  toast.error(err.response.data.message ?? err)
+                  setSubmitting(false);
+                  history.push("/mon-compte");
+                  toast.success(res.data.message);
+                  userContext.setUserId(0);
                 })
+                .catch((err) => {
+                  toast.error(err.response.data.message ?? err);
+                });
             }}
           >
             {({
-                values,
-                errors,
-                touched,
-                handleChange,
-                handleBlur,
-                handleSubmit,
-                isSubmitting,
-                /* and other goodies */
-              }) => (
+              values,
+              errors,
+              touched,
+              handleChange,
+              handleBlur,
+              handleSubmit,
+              isSubmitting,
+              /* and other goodies */
+            }) => (
               <form className="login__form" onSubmit={handleSubmit}>
                 <div className="login__form_group">
                   <label htmlFor="email">Email</label>

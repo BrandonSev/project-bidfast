@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
 const CardSkeleton = () => {
   return (
     <div className="card__skeleton">
-      <div className="card__skeleton__image" >
+      <div className="card__skeleton__image">
         <span />
       </div>
       <div className="card__skeleton__body">

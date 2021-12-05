@@ -47,17 +47,17 @@ export default class Slider extends React.Component {
         }
         if (
           this.state.child[this.state.index + this.state.slidesVisible] ===
-          undefined ||
+            undefined ||
           this.state.child[
-          this.state.index +
-          this.state.slidesVisible +
-          this.state.slidesToScroll
-            ] === undefined
+            this.state.index +
+              this.state.slidesVisible +
+              this.state.slidesToScroll
+          ] === undefined
         ) {
           console.log("ok");
           this.sliderRef.current.style.left =
             (this.state.length - this.state.slidesVisible) *
-            (-100 / this.state.slidesVisible) +
+              (-100 / this.state.slidesVisible) +
             "%";
           this.setState({
             index: this.state.length - this.state.slidesVisible,
@@ -68,8 +68,8 @@ export default class Slider extends React.Component {
         if (
           this.state.index ===
           this.state.child.length -
-          this.state.slidesVisible * 2 -
-          this.state.slidesToScroll
+            this.state.slidesVisible * 2 -
+            this.state.slidesToScroll
         ) {
           this.sliderRef.current.style.left =
             this.state.percent +
@@ -99,12 +99,12 @@ export default class Slider extends React.Component {
         }
         if (
           this.state.child[
-          this.state.index -
-          this.state.slidesVisible +
-          this.state.slidesToScroll
-            ] === undefined ||
+            this.state.index -
+              this.state.slidesVisible +
+              this.state.slidesToScroll
+          ] === undefined ||
           this.state.child[this.state.index - this.state.slidesToScroll] ===
-          undefined
+            undefined
         ) {
           this.sliderRef.current.style.left = 0 + "%";
           this.setState({ index: 0 });
@@ -141,8 +141,8 @@ export default class Slider extends React.Component {
       if (
         this.state.index ===
         this.state.child.length -
-        this.state.slidesVisible * 2 -
-        this.state.slidesToScroll
+          this.state.slidesVisible * 2 -
+          this.state.slidesToScroll
       ) {
         this.setState({
           transition: "none",
@@ -156,13 +156,13 @@ export default class Slider extends React.Component {
             this.state.slidesVisible * 2 +
             this.state.slidesVisible -
             this.state.slidesToScroll) *
-          (-100 / this.state.slidesVisible) +
+            (-100 / this.state.slidesVisible) +
           "%";
       }
 
       if (
         this.state.index >=
-        this.state.child.length - this.state.slidesVisible * 2 ||
+          this.state.child.length - this.state.slidesVisible * 2 ||
         this.state.index === 0
       ) {
         this.setState({ transition: "none" });
@@ -269,8 +269,8 @@ export default class Slider extends React.Component {
               style={{
                 left: this.state.infinite
                   ? this.state.slidesVisible *
-                  (-100 / this.state.slidesVisible) +
-                  "%"
+                      (-100 / this.state.slidesVisible) +
+                    "%"
                   : 0,
                 transition: this.state.transition,
                 width:

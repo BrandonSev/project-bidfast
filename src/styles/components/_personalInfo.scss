@@ -6,7 +6,6 @@
   form {
     button{
       display: block;
-      margin-left: auto;
       margin-top: space(2);
     }
   }
@@ -29,15 +28,11 @@
   margin-bottom: 0;
 }
 .button__action{
-  display: flex;
-  align-items: center;
-  margin-left: auto;
+  justify-content: flex-end;
   margin-top: space(2);
   button{
+    min-width: 100%;
     width: 100%;
-  }
-  :last-child{
-    margin-left: space(2);
   }
 }
 @media screen and(min-width: 768px){
@@ -55,6 +50,15 @@
     margin-bottom: 0;
   }
   .button__action{
-    width: fit-content;
+    display: flex;
+    align-items: center;
+
+    button{
+      min-width: initial;
+      width: fit-content;
+      :last-child{
+        margin-left: space(2);
+      }
+    }
   }
 }

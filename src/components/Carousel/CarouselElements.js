@@ -17,14 +17,14 @@ export const CarouselItem = ({ style, children }) => {
 };
 
 export const Dots = ({
-                       slides,
-                       index,
-                       visible,
-                       scroll,
-                       infinite,
-                       goTo,
-                       length,
-                     }) => {
+  slides,
+  index,
+  visible,
+  scroll,
+  infinite,
+  goTo,
+  length,
+}) => {
   const clamp = (number, lowerBound, upperBound) => {
     return Math.max(lowerBound, Math.min(number, upperBound));
   };
@@ -35,7 +35,7 @@ export const Dots = ({
         .slice(
           0,
           (length - (infinite ? 2 * visible : visible)) / scroll +
-          (infinite ? 0 : 1)
+            (infinite ? 0 : 1)
         )
         .map((item, idx) => {
           let _rightBound = (idx + 1) * scroll - 1;
@@ -106,8 +106,8 @@ const ButtonInner = styled.button`
   }
 
   ${(props) =>
-  props.next &&
-  css`
+    props.next &&
+    css`
       left: auto;
       right: -16px;
       &::before {

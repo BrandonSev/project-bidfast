@@ -1,19 +1,19 @@
 import React from "react";
-import {Formik} from "formik";
-import {toast} from "react-toastify";
+import { Formik } from "formik";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 
-function Register({history}) {
+function Register({ history }) {
   return (
     <div className="register">
       <div className="register__svg">
-        <img src="image/login_svg.svg" alt="login illustration"/>
+        <img src="image/login_svg.svg" alt="login illustration" />
       </div>
       <div>
         <h1 className="register__title">
           <span>
-            <img src="image/user_icon.png" alt="user icon"/>
+            <img src="image/user_icon.png" alt="user icon" />
           </span>
           Créer mon compte
         </h1>
@@ -52,34 +52,36 @@ function Register({history}) {
             }
             return errors;
           }}
-          onSubmit={async (values, {setSubmitting}) => {
-            await axios.post(`${process.env.REACT_APP_API_URL}/api/users/register`, {
-              email: values.email,
-              firstname: values.prenom,
-              lastname: values.nom,
-              password: values.password,
-              genre: values.genre,
-              age: values.age,
-            }).then(async (res) => {
-              setSubmitting(false);
-              toast.success(res.data.message);
-              history.push('/connexion')
-            })
+          onSubmit={async (values, { setSubmitting }) => {
+            await axios
+              .post(`${process.env.REACT_APP_API_URL}/api/users/register`, {
+                email: values.email,
+                firstname: values.prenom,
+                lastname: values.nom,
+                password: values.password,
+                genre: values.genre,
+                age: values.age,
+              })
+              .then(async (res) => {
+                setSubmitting(false);
+                toast.success(res.data.message);
+                history.push("/connexion");
+              })
               .catch((err) => {
-                toast.error(err.response.data.message ?? err)
+                toast.error(err.response.data.message ?? err);
               });
           }}
         >
           {({
-              values,
-              errors,
-              touched,
-              handleChange,
-              handleBlur,
-              handleSubmit,
-              isSubmitting,
-              /* and other goodies */
-            }) => (
+            values,
+            errors,
+            touched,
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            isSubmitting,
+            /* and other goodies */
+          }) => (
             <form onSubmit={handleSubmit} className="register__form">
               <div className="register__form_group">
                 <label htmlFor="email">Email</label>
@@ -153,8 +155,8 @@ function Register({history}) {
                 />
                 <div className="error">
                   {errors.passwordConfirm &&
-                  touched.passwordConfirm &&
-                  errors.passwordConfirm}
+                    touched.passwordConfirm &&
+                    errors.passwordConfirm}
                 </div>
               </div>
               <div className="register__form_group">

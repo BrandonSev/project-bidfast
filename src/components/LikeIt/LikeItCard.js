@@ -4,8 +4,8 @@ function LikeItCard() {
   return (
     <div className="likeItCard">
       <div className="likeItCard__header">
-        <img src="image/Oval.png" alt="avatar"/>
-        <img src="image/star.png" alt="star" className="star"/>
+        <img src="image/Oval.png" alt="avatar" />
+        <img src="image/star.png" alt="star" className="star" />
       </div>
       <div className="likeItCard__content">
         <p>Super site je recommande fortement Et le site est super beau :))</p>
