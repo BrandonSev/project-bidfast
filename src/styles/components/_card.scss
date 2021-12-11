@@ -1,8 +1,8 @@
 .card {
-  //border: 1px solid #c4c4c4;
   border-radius: 10px 10px 0 0;
-  box-shadow: 1px 1px 20px rgba(0,0,0,0.2);
+  box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.2);
   .card__image {
+    height: 230px;
     img {
       display: block;
       width: 100%;
@@ -10,9 +10,10 @@
       max-height: 230px;
       object-fit: cover;
       border-radius: 10px 10px 0 0;
-      border-bottom: 1px solid var(--grey) ;
+      border-bottom: 1px solid var(--grey);
     }
   }
+
   .card__body {
     display: flex;
     flex-direction: column;
@@ -22,6 +23,7 @@
     .card__body_head {
       overflow: hidden;
       white-space: nowrap;
+
       h4 {
         display: flex;
         justify-content: space-between;
@@ -47,6 +49,12 @@
     .card__body_desc {
       margin: space(3) 0;
       text-align: left;
+      max-height: 153px;
+      min-height: 153px;
+
+      strong {
+        font-weight: 600;
+      }
     }
 
     .card__footer {
@@ -57,25 +65,28 @@
 
   .card__footer {
     display: grid;
-    grid-template-columns: 60% fit-content(100%);
+    grid-template-columns: 1fr fit-content(100%);
     justify-content: space-between;
 
     .card__footer_author {
       display: flex;
       align-items: center;
       overflow: hidden;
+
       p {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
       }
+
       img {
         width: 25px;
         height: 25px;
         margin-right: space(1);
       }
     }
-    :last-child{
+
+    :last-child {
       justify-self: flex-end;
     }
   }

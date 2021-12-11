@@ -26,7 +26,7 @@ function Card({
         .get(
           `${process.env.REACT_APP_API_URL}/api/offers/${id}/offerBiddings?limit=1&order=DESC`
         )
-        .then(async (res) => {
+        .then((res) => {
           setData(res.data[0]);
         })
         .catch((err) => console.log(err));
@@ -69,13 +69,16 @@ function Card({
               <p>
                 Prix de départ: {startPrice}€,&nbsp;
                 <span className="text-primary bold">
-                  Prix en cours:{" "}
-                  {data.price ? data.price + "€" : "Aucune offre"}
+                  Prix en cours: {data.price ? data.price + "€" : "-"}
                 </span>
               </p>
             </div>
             <div className="card__body_desc">
-              <p>{content ? content.substring(0, 250) : ""}...</p>
+              <p>
+                <strong>Description:</strong> <br />
+                <br />
+                {content ? content.substring(0, 250) : ""}...
+              </p>
             </div>
             <div className="card__footer">
               <div className="card__footer_author">

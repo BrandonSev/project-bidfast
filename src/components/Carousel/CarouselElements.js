@@ -63,14 +63,15 @@ export const Dot = ({ active, index, goTo }) => {
     <span
       style={{
         display: "block",
-        width: 6,
-        height: 6,
+        width: 8,
+        height: 8,
         backgroundColor: active ? "rgba(37, 138, 255, 1)" : "rgba(0, 0, 0, .4)",
-        borderRadius: 6,
+        borderRadius: 8,
         transition: ".3s ease-in",
         transitionProperty: "transform, background-color",
         transitionDelay: ".2s",
-        transform: active ? "scale(1.6)" : null,
+        transform: active ? "scale(1.9)" : null,
+        marginTop: "calc(var(--space) * 2)",
       }}
       onClick={() => goTo(index)}
     />
@@ -81,10 +82,13 @@ const ButtonInner = styled.button`
   outline: none;
   border: 0;
   background: transparent;
+  width: 32px;
   height: 32px;
   position: absolute;
-  top: 45%;
-  left: -32px;
+  top: 50%;
+  left: 0px;
+  transform: translateY(-50%);
+
   &::before,
   &::after {
     content: "";
@@ -96,6 +100,7 @@ const ButtonInner = styled.button`
     transform: rotate(-45deg);
     transform-origin: bottom left;
   }
+
   &::after {
     transform: rotate(45deg);
     transform-origin: top left;
@@ -108,20 +113,20 @@ const ButtonInner = styled.button`
   ${(props) =>
     props.next &&
     css`
-      left: auto;
-      right: -16px;
+      width: 32px;
+      right: 0;
+      left: unset;
+
       &::before {
         transform: rotate(45deg);
         transform-origin: bottom right;
       }
+
       &::after {
         transform: rotate(-45deg);
         transform-origin: top right;
       }
     `}
-  @media screen and (max-width: 768px) {
-    display: none;
-  }
 `;
 export const ButtonContainer = styled.div`
   display: flex;

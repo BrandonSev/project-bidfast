@@ -17,12 +17,13 @@ export default class Slider extends React.Component {
       slidesVisible: props.slidesVisible || 4,
       autoplay: false,
       index: 0,
+      durationPlay: props.duration,
       slidesToScroll: props.slidesToScroll || 1,
       percent: 0,
       gap: props.gap || 0,
       paused: false,
       infinite: props.infinite || false,
-      child: React.Children.toArray(props.children) || [],
+      child: React.Children.toArray(this.props.children) || [],
       transition: "left .6s ease",
       ready: true,
       dots: props.dots || true,
@@ -34,6 +35,7 @@ export default class Slider extends React.Component {
     this.carouselRef = React.createRef();
     this.handleSlide = this.handleSlide.bind(this);
     this.handleAnimation = this.handleAnimation.bind(this);
+    this.goTo = this.goTo.bind(this);
   }
 
   handleSlide(dir) {
@@ -54,7 +56,6 @@ export default class Slider extends React.Component {
               this.state.slidesToScroll
           ] === undefined
         ) {
-          console.log("ok");
           this.sliderRef.current.style.left =
             (this.state.length - this.state.slidesVisible) *
               (-100 / this.state.slidesVisible) +
@@ -198,7 +199,7 @@ export default class Slider extends React.Component {
           bQuery = json2mq({ minWidth: 0, maxWidth: brkp });
         } else {
           bQuery = json2mq({
-            minWidth: breakpoints[idx - 1] + 1,
+            minWidth: breakpoints[idx - 1],
             maxWidth: brkp,
           });
         }
@@ -217,12 +218,19 @@ export default class Slider extends React.Component {
         },
       });
     }
-
-    this.setState({ percent: parseFloat(this.sliderRef.current.style.left) });
+    this.setState({
+      percent: parseFloat(this.sliderRef.current.style.left),
+    });
+    if (this.state.autoplay) {
+      window.setInterval(() => {
+        this.handleSlide(1);
+      }, this.state.durationPlay);
+    }
   }
 
   componentDidUpdate(prevprops, prevState) {
     if (this.state.breakpoint !== prevState.breakpoint) {
+      this.setState({ transition: "none" });
       let newprops = this.state.responsive.filter(
         (data) => data.breakpoint === this.state.breakpoint
       );
@@ -244,15 +252,65 @@ export default class Slider extends React.Component {
             React.Children.toArray(this.props.children).length +
             2 * newprops[0].settings.slidesVisible,
         });
+        this.sliderRef.current.style.left =
+          (this.state.index + newprops[0].settings.slidesVisible) *
+            (-100 / newprops[0].settings.slidesVisible) +
+          "%";
       } else {
         this.setState({
           slidesVisible: newprops[0].settings.slidesVisible,
           slidesToScroll: newprops[0].settings.slidesToScroll,
           length: React.Children.toArray(this.props.children).length,
         });
+        if (
+          this.state.child[
+            this.state.index + newprops[0].settings.slidesVisible
+          ] === undefined
+        ) {
+          this.sliderRef.current.style.left =
+            (prevState.breakpoint < this.state.breakpoint
+              ? this.state.index - prevState.slidesToScroll
+              : this.state.index) *
+              (-100 / newprops[0].settings.slidesVisible) +
+            "%";
+
+          this.setState({
+            index:
+              prevState.breakpoint < this.state.breakpoint
+                ? this.state.index - prevState.slidesToScroll
+                : this.state.index,
+          });
+          return;
+        }
+        this.sliderRef.current.style.left =
+          this.state.index * (-100 / newprops[0].settings.slidesVisible) + "%";
+      }
+      this.setState({ transition: "left .6s ease" });
+    }
+  }
+
+  goTo(index) {
+    if (this.state.infinite) {
+      if (index === 0) {
+        this.sliderRef.current.style.left =
+          this.state.slidesVisible * (-100 / this.state.slidesVisible) + "%";
+        this.setState({ index: 0, transition: "left .6s ease" });
+        return;
       }
       this.sliderRef.current.style.left =
-        this.state.index * (-100 / newprops[0].settings.slidesVisible) + "%";
+        (index + this.state.slidesVisible) * (-100 / this.state.slidesVisible) +
+        "%";
+      this.setState({
+        index: index,
+        transition: "left .6s ease",
+      });
+    } else {
+      this.sliderRef.current.style.left =
+        index * (-100 / this.state.slidesVisible) + "%";
+      this.setState({
+        index: index,
+        transition: "left .6s ease",
+      });
     }
   }
 
@@ -303,7 +361,7 @@ export default class Slider extends React.Component {
                 visible={this.state.slidesVisible}
                 scroll={this.state.slidesToScroll}
                 infinite={this.state.infinite}
-                //goTo={this.goTo}
+                goTo={this.goTo}
                 length={this.state.length}
               />
             )}

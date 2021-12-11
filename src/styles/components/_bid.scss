@@ -7,17 +7,24 @@
 @media screen and(min-width: 768px) {
   .bid {
     .card {
-      border-radius: 10px 0 0 10px ;
       display: flex;
-      overflow: hidden;
-      .card__body {
+      .card__body{
         width: 100%;
+        .card__body_desc{
+          padding: 0;
+          min-height: initial;
+        }
       }
-      .card__image img{
-        width: 390px;
-        border-radius: initial;
-        border-bottom: 0;
-        border-right: 1px solid var(--grey) ;
+      .card__image {
+        height: initial;
+        img {
+          width: 300px;
+          max-height: fit-content;
+          object-fit: cover;
+          border-radius: initial;
+          border-bottom: 0;
+          border-right: 1px solid var(--grey);
+        }
       }
     }
   }

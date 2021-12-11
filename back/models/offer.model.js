@@ -15,6 +15,7 @@ module.exports.findAll = (req, res) => {
       sql += ` WHERE expireAt < NOW()`;
     }
   }
+  if (req.query.limit) sql += ` LIMIT ${req.query.limit}`;
   return db.promise().query(sql);
 };
 /**
