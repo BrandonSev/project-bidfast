@@ -40,7 +40,6 @@ function Card({
         await axios
           .get(`${process.env.REACT_APP_API_URL}/api/users/${userId}`)
           .then((result) => {
-            console.log(result);
             setUser(result.data[0]);
           }))();
     }

@@ -53,9 +53,9 @@ function Login() {
                 )
                 .then(async (res) => {
                   setSubmitting(false);
+                  userContext.setUserId(0); // Permet de rafraichir le composant Navbar pour les differents boutton necessaire a l'utilisateur connecté
                   history.push("/mon-compte");
                   toast.success(res.data.message);
-                  userContext.setUserId(0);
                 })
                 .catch((err) => {
                   toast.error(err.response.data.message ?? err);

@@ -16,9 +16,9 @@ const Logout = ({ handleClose }) => {
         withCredentials: true,
       })
       .then((res) => {
+        userContext.setUserId(null);
         history.push("/");
         toast.success(res.data.message);
-        userContext.setUserId(null);
         handleClose();
       })
       .catch((e) => {

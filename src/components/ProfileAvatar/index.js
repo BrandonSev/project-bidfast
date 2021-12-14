@@ -12,9 +12,9 @@ const ProfileAvatar = () => {
     e.preventDefault();
     setLoading(true);
     if (!e.target.files[0]) return;
-    if (e.target.files[0].size > 300000) {
+    if (e.target.files[0].size > 1000000) {
       setLoading(false);
-      return toast.error("Votre image ne doit pas dépasser les 300ko");
+      return toast.error("Votre image ne doit pas dépasser 1Mo");
     }
     const image = e.target.files[0];
     const formData = new FormData();

@@ -10,10 +10,10 @@ const path = require("path");
  * @returns {*}
  */
 module.exports.checkFileSize = (req, res, next) => {
-  if (req.files && req.files[0].size > 300000) {
+  if (req.files && req.files[0].size > 1000000) {
     return res
       .status(413)
-      .json({ message: "Votre fichier ne doit pas dépasser 300ko" });
+      .json({ message: "Votre fichier ne doit pas dépasser 1mo" });
   }
   next();
 };
