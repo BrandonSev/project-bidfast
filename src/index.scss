@@ -94,13 +94,16 @@ button:hover {
 .active-link {
   color: var(--primary-light);
 }
-
 .btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   border-radius: 5px;
   padding: space(2);
-}
 
+  svg{
+    margin-left: space(1);
+  }
+}
 .btn-primary {
   min-width: fit-content;
   color: #fff;

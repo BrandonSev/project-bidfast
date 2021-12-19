@@ -34,16 +34,6 @@ const MenuList = ({ className, handleClose, activeClassName }) => {
           Vendre
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          to="/recherche"
-          exact
-          onClick={handleClose}
-          activeClassName={activeClassName}
-        >
-          Rechercher
-        </NavLink>
-      </li>
     </ul>
   );
 };

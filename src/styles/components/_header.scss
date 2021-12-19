@@ -11,6 +11,28 @@
 .header {
   display: flex;
   align-items: center;
+  .header__right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-grow: 1;
+    margin-right: space(2);
+    z-index: 9;
+    a{
+      display: none;
+    }
+  }
+
+  .header__icon {
+    display: flex;
+    align-items: center;
+    > *:not(:last-child){
+      margin-right: space(2);
+    }
+    > *:hover{
+      cursor: pointer;
+    }
+  }
 }
 
 .header__menu {
@@ -39,22 +61,24 @@
   }
 }
 
-.header__right {
-  display: none;
-
-  .logout {
-    display: flex;
-    align-items: center;
-
-    & svg {
-      margin-left: space(1);
-    }
-  }
-}
-
 @media screen and (min-width: 810px) {
   .header {
     justify-content: space-between;
+
+    .header__icon {
+      position: initial;
+    }
+    .header__right{
+      display: flex;
+      align-items: center;
+      flex-grow: 0;
+      a {
+        display: inherit;
+      }
+      & > *:not(:last-child) {
+        margin-right: space(2);
+      }
+    }
   }
   .burger__menu {
     display: none !important;
@@ -63,30 +87,9 @@
     display: flex;
     align-items: center;
 
-    & > * {
+    & > *:not(:last-child) {
       padding-right: space(3);
     }
-
-    & > *:last-child {
-      padding-right: 0;
-    }
   }
-  .header__right {
-    display: flex;
-    align-items: center;
-    top: 1rem;
-    left: 1rem;
 
-    & > *:not(:last-child) {
-      margin-right: space(1);
-    }
-
-    .icon {
-      margin-right: space(2);
-    }
-
-    a:not(:last-child) {
-      margin-right: calc(2 * var(--space));
-    }
-  }
 }
